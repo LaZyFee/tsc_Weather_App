@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button'
 import WeatherSkeleton from '@/components/ui/loading-skeleton';
 import CurrentWeather from '@/components/Weather/CurrentWeather';
 import { HourlyTemperature } from '@/components/Weather/HourlyTemperature';
+import { WeatherDetails } from '@/components/Weather/WeatherDetails';
+import { WeatherForecast } from '@/components/Weather/WeatherForecast';
 import { useGeoLocation } from '@/hooks/use-geo-location'
 import { useForecastQuery, useReverseGeocodeQuery, useWeatherQuery } from '@/hooks/use-weather';
 import { AlertTriangle, MapPin, RefreshCw } from 'lucide-react'
@@ -92,32 +94,35 @@ function WeatherDashboard() {
 
 
     return (
-        <div className='space-y-4'>
-            {/* fav cities */}
-
-            <div className="flex items-center justify-between mx-auto px-4">
+        <div className="space-y-4">
+            {/* <FavoriteCities /> */}
+            <div className="flex items-center justify-between">
                 <h1 className="text-xl font-bold tracking-tight">My Location</h1>
                 <Button
-                    variant={'outline'}
-                    size={'icon'}
+                    variant="outline"
+                    size="icon"
                     onClick={handleRefresh}
                     disabled={weatherQuery.isFetching || forecastQuery.isFetching}
                 >
-                    <RefreshCw className={`w-4 h-4 ${weatherQuery.isFetching || forecastQuery.isFetching ? 'animate-spin' : ''}`} />
-
+                    <RefreshCw
+                        className={`h-4 w-4 ${weatherQuery.isFetching ? "animate-spin" : ""
+                            }`}
+                    />
                 </Button>
             </div>
-            {/* current & hourly weather */}
-            <div className='grid gap-6'>
-                <div className="flex flex-col md:flex-row gap-4">
-                    {/* current weather */}
-                    <CurrentWeather data={weatherQuery.data} locationName={locationName} />
-                    {/*hourly temperature */}
+
+            <div className="grid gap-6">
+                <div className="flex flex-col lg:flex-row gap-4">
+                    <CurrentWeather
+                        data={weatherQuery.data}
+                        locationName={locationName}
+                    />
                     <HourlyTemperature data={forecastQuery.data} />
                 </div>
-                <div>
-                    {/* details */}
-                    {/* forecast */}
+
+                <div className="grid gap-6 md:grid-cols-2 items-start">
+                    <WeatherDetails data={weatherQuery.data} />
+                    <WeatherForecast data={forecastQuery.data} />
                 </div>
             </div>
         </div>
