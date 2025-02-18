@@ -28,14 +28,14 @@ const CurrentWeather = ({ data, locationName }: CurrentWeatherProps) => {
                                 <h2 className="text-2xl font-bold tracking-tight">
                                     {locationName?.name}
                                 </h2>
-                                {locationName?.state && (
-                                    <span className="text-muted-foreground">
-                                        , {locationName.state}
-                                    </span>
-                                )}
                             </div>
                             <p className="text-sm text-muted-foreground">
-                                {locationName?.country}
+                                {locationName?.state && (
+                                    <span className="text-muted-foreground">
+                                        {locationName.state},
+                                    </span>
+                                )}
+                                &nbsp; {locationName?.country}
                             </p>
                         </div>
 

@@ -62,7 +62,7 @@ export const WeatherForecast = ({ data }: WeatherForecastProps) => {
                                 <p className="font-medium">{format(new Date(day.date * 1000), "EEE, MMM d")}</p>
                                 <p className="text-sm text-muted-foreground capitalize">{day.weather.description}</p>
                             </div>
-                            <div className="flex items-center justify-center gap-4">
+                            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                                 <span className="flex text-blue-500 items-center">
                                     <ArrowDown className="h-4 w-4 mr-1" />
                                     {formatTemp(day.temp_min)}
@@ -73,7 +73,7 @@ export const WeatherForecast = ({ data }: WeatherForecastProps) => {
                                 </span>
 
                             </div>
-                            <div className="flex justify-center gap-4">
+                            <div className="flex flex-col md:flex-row justify-center gap-4">
                                 <span className="flex items-center gap-1">
                                     <Droplets className="h-4 w-4 text-blue-500" />
                                     <span className="text-sm">{day.humadity}%</span>
